@@ -43,6 +43,14 @@ console.log(1 == "1");
 console.log(1 === Number("1"));
 console.log(1 === +"1");
 console.log(1 === "1");
+console.log(true === Boolean(1));
+console.log(true === Boolean(0));
+console.log(true === Boolean("true"));
+console.log(true === Boolean("false"));
+console.log(true === Boolean("")); // falsy
+console.log(true === Boolean(null));
+console.log(true === Boolean(undefined));
+console.log(true === !!1);
 
 let notANumber = NaN;
 console.log(typeof NaN, Number.isNaN(notANumber));

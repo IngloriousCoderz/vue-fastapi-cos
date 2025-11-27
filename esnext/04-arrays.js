@@ -103,7 +103,7 @@ const numbers = [1, 2, 3, 4, 5];
   console.log(numbers, unshiftedNumbers);
 }
 
-// immutable slice
+// immutable splice
 {
   const splicedNumbers = [...numbers.slice(0, 2), 6, 7, ...numbers.slice(4)];
   console.log(numbers, splicedNumbers);

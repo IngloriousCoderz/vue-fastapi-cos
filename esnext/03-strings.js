@@ -4,6 +4,19 @@ const doubleQuotes = "Hello 'world', how are you?";
 const concatenation = singleQuotes + doubleQuotes;
 console.log(concatenation);
 
+console.log("1" + "1");
+console.log(1 + 1);
+console.log(1 + "1");
+console.log(1 + "hello");
+console.log(1 - "1");
+console.log(1 - "hello");
+console.log(1 + parseInt("1"));
+console.log(1 + parseInt("1hello"));
+console.log(1 + Number("1"));
+console.log(1 + Number("1hello"));
+console.log(1 + +"1");
+console.log(1 + +"1hello");
+
 const templateLiteral = `I can use 'single' and "double" \`quotes\`
 They are multiline too!
 We can interpolate ${"expressions".toUpperCase()}!!!`;
