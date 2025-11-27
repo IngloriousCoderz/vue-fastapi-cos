@@ -92,6 +92,6 @@ function autoBinding() {
     return a + b;
   }
 
-  console.log(sum());
+  console.log(sum(0));
   console.log(sum(null, null));
 }
