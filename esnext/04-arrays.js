@@ -108,3 +108,43 @@ const numbers = [1, 2, 3, 4, 5];
   const splicedNumbers = [...numbers.slice(0, 2), 6, 7, ...numbers.slice(4)];
   console.log(numbers, splicedNumbers);
 }
+
+console.log(numbers.includes(2));
+
+const obj1 = {};
+const obj2 = {};
+console.log(obj1 !== obj2, JSON.stringify(obj1) === JSON.stringify(obj2));
+
+const objects = [obj1];
+console.log(objects.includes(obj1), objects.includes(obj2));
+
+const httpStatus = 200;
+
+if (httpStatus === 200 || httpStatus === 201 || httpStatus === 204) {
+  console.log("Ok!");
+}
+if (httpStatus === 301 || httpStatus === 304) {
+  console.log("Modified/redirected");
+}
+
+switch (httpStatus) {
+  case 200:
+  case 201:
+  case 204:
+    console.log("Ok!");
+
+  case 301:
+  case 304:
+    console.log("Modified/redirected");
+
+  default:
+}
+
+const SUCCESS_CODES = [200, 201, 204];
+const MODIFIED_CODES = [301, 304];
+
+if (SUCCESS_CODES.includes(httpStatus)) {
+  console.log("Ok!");
+} else if (MODIFIED_CODES.includes(httpStatus)) {
+  console.log("Modified/redirected");
+}

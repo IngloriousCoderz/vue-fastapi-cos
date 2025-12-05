@@ -183,10 +183,12 @@ setTimeout(() => {
   console.log("Three seconds have passed!");
 }, 3000);
 
-new Promise((_, reject) => {
+const timeout = new Promise((_, reject) => {
   setTimeout(() => {
     reject("Three seconds have passed!");
   }, 3000);
-}).catch((message) => {
-  console.error(message);
 });
+
+const requestWithTimeout = Promise.race([fetch(url), timeout])
+  .then((response) => {})
+  .catch((timeoutMessage) => console.error(timeoutMessage));
