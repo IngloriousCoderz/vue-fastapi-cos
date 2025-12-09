@@ -1,62 +1,34 @@
-<script>
-export default {
-  name: 'App',
+<script setup>
+import { ref } from 'vue'
 
-  data() {
-    return {
-      text: '',
-      tasks: [
-        { id: 1, text: 'Learn Vue', completed: true },
-        { id: 2, text: 'Look for a job', completed: false },
-        { id: 3, text: 'Forget everything' },
-      ],
-    }
-  },
+import AppHeader from './AppHeader.vue'
+import AppForm from './AppForm.vue'
+import AppList from './AppList.vue'
 
-  methods: {
-    // handleInput(event) {
-    //   this.text = event.target.value
-    // },
+const tasks = ref([
+  { id: 1, text: 'Learn Vue', completed: true },
+  { id: 2, text: 'Look for a job', completed: false },
+  { id: 3, text: 'Forget everything' },
+])
 
-    handleSubmit() {
-      const maxId = this.tasks.length ? this.tasks[this.tasks.length - 1].id : 0
-      this.tasks.push({ id: maxId + 1, text: this.text })
-      this.text = ''
-    },
+function handleSubmit(text) {
+  const maxId = tasks.value.length ? tasks.value[tasks.value.length - 1].id : 0
+  tasks.value.push({ id: maxId + 1, text })
+}
 
-    handleSpanClick(index) {
-      this.tasks[index].completed = !this.tasks[index].completed
-    },
+function handleSpanClick(index) {
+  tasks.value[index].completed = !tasks.value[index].completed
+}
 
-    handleButtonClick(index) {
-      this.tasks.splice(index, 1)
-    },
-  },
+function handleButtonClick(index) {
+  tasks.value.splice(index, 1)
 }
 </script>
 
 <template>
-  <h1>My Todo List</h1>
-  <form @submit.prevent="handleSubmit">
-    <!-- <input type="text" placeholder="What next?" autofocus :value="text" @input="handleInput" /> -->
-    <input type="text" placeholder="What next?" autofocus v-model="text" />
-    <button>Add</button>
-  </form>
+  <AppHeader name="Matteo Antony" />
 
-  <ul>
-    <li v-for="(task, index) of tasks" :key="task.id">
-      <span :class="{ completed: task.completed }" @click="handleSpanClick(index)">{{
-        task.text
-      }}</span>
-      &nbsp;
-      <button @click="handleButtonClick(index)">x</button>
-    </li>
-  </ul>
+  <AppForm @submit="handleSubmit" />
+
+  <AppList :tasks="tasks" @spanClick="handleSpanClick" @buttonClick="handleButtonClick" />
 </template>
-
-<style scoped>
-.completed {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-</style>
