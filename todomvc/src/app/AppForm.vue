@@ -1,19 +1,23 @@
 <script setup>
-import { ref } from 'vue'
+import { useListStore } from './store/list'
+import { useFormStore } from './store/form'
+import { storeToRefs } from 'pinia'
 
-const emit = defineEmits(['submit'])
+const form = useFormStore()
+const { text } = storeToRefs(form)
+const { empty } = form
 
-const text = ref('')
+const { add } = useListStore()
 
 function handleSubmit() {
-  emit('submit', text.value)
-  text.value = ''
+  add(text.value)
+  empty()
 }
 </script>
 
 <template>
   <form @submit.prevent="handleSubmit">
     <input type="text" placeholder="What next?" autofocus v-model="text" />
-    <button>Add</button>
+    <button :disabled="!text">Add</button>
   </form>
 </template>

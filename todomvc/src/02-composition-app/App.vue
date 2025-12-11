@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUpdated } from 'vue'
 
 const text = ref('')
 const tasks = ref([
@@ -21,13 +21,21 @@ function handleSpanClick(index) {
 function handleButtonClick(index) {
   tasks.value.splice(index, 1)
 }
+
+onMounted(() => {
+  console.log('App mounted!')
+})
+
+onUpdated(() => {
+  console.log('App updated!')
+})
 </script>
 
 <template>
   <h1>My Todo List</h1>
   <form @submit.prevent="handleSubmit">
     <input type="text" placeholder="What next?" autofocus v-model="text" />
-    <button>Add</button>
+    <button :disabled="!text">Add</button>
   </form>
 
   <ul>

@@ -40,7 +40,7 @@ export default {
   <form @submit.prevent="handleSubmit">
     <!-- <input type="text" placeholder="What next?" autofocus :value="text" @input="handleInput" /> -->
     <input type="text" placeholder="What next?" autofocus v-model="text" />
-    <button>Add</button>
+    <button :disabled="!text">Add</button>
   </form>
 
   <ul>
