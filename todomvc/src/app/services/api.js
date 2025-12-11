@@ -1,0 +1,28 @@
+import axios from 'axios'
+
+const http = axios.create({ baseURL: import.meta.env.VITE_BASE_URL })
+
+export async function fetchTasks() {
+  const { data } = await http.get()
+  return data
+}
+
+export async function addTask(text) {
+  const { data } = await http.post('', { text })
+  return data
+}
+
+export async function replaceTask(id, body) {
+  const { data } = await http.put(id, body)
+  return data
+}
+
+export async function updateTask(id, body) {
+  const { data } = await http.patch(id, body)
+  return data
+}
+
+export async function removeTask(id) {
+  const { data } = await http.delete(id)
+  return data
+}
