@@ -1,18 +1,15 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import { useListStore } from './store/list'
-import { useFiltersStore } from './store/filters'
 
 const list = useListStore()
+const { tasks } = storeToRefs(list)
 const { toggle, remove } = list
-
-const filters = useFiltersStore()
-const { filteredTasks } = storeToRefs(filters)
 </script>
 
 <template>
   <ul>
-    <li v-for="(task, index) of filteredTasks" :key="task.id" :id="task.id">
+    <li v-for="(task, index) of tasks" :key="task.id">
       <span :class="{ completed: task.completed }" @click="toggle(index)">{{ task.text }}</span>
       &nbsp;
       <button @click="remove(index)">x</button>
@@ -21,10 +18,6 @@ const { filteredTasks } = storeToRefs(filters)
 </template>
 
 <style scoped>
-#temp {
-  opacity: 0.5;
-}
-
 .completed {
   text-decoration: line-through;
   opacity: 0.5;

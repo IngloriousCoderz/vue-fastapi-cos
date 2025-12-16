@@ -16,6 +16,10 @@ export const useListStore = defineStore('list', () => {
 
   async function toggle(index) {
     const task = tasks.value[index]
+    // const body = { ...task, completed: !task.completed }
+    // const replacedTask = await api.replaceTask(task.id, body)
+    // tasks.value[index] = replacedTask
+
     const body = { completed: !task.completed }
     const updatedTask = await api.updateTask(task.id, body)
     tasks.value[index] = updatedTask

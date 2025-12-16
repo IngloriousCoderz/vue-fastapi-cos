@@ -6,25 +6,30 @@ export const useListStore = defineStore('list', () => {
   const tasks = ref([])
 
   onMounted(() => {
-    api.fetchTasks().then((t) => (tasks.value = t))
+    refreshTasks()
   })
 
+  async function refreshTasks() {
+    const data = await api.fetchTasks()
+    tasks.value = data
+  }
+
   async function add(text) {
-    const createdTask = await api.addTask(text)
-    tasks.value.push(createdTask)
+    await api.addTask(text)
+    refreshTasks()
   }
 
   async function toggle(index) {
     const task = tasks.value[index]
     const body = { completed: !task.completed }
-    const updatedTask = await api.updateTask(task.id, body)
-    tasks.value[index] = updatedTask
+    await api.updateTask(task.id, body)
+    refreshTasks()
   }
 
   async function remove(index) {
     const task = tasks.value[index]
     await api.removeTask(task.id)
-    tasks.value.splice(index, 1)
+    refreshTasks()
   }
 
   return { tasks, add, toggle, remove }

@@ -1,0 +1,42 @@
+import { defineStore } from 'pinia'
+
+import { computed, ref } from 'vue'
+import { useListStore } from './list'
+import { storeToRefs } from 'pinia'
+
+export const useFiltersStore = defineStore('filters', () => {
+  const list = useListStore()
+  const { remove } = list
+  const { tasks } = storeToRefs(list)
+
+  const activeTasks = computed(() => tasks.value.filter((task) => !task.completed))
+  const completedTasks = computed(() => tasks.value.filter((task) => task.completed))
+  const tasksLeft = computed(() => activeTasks.value.length)
+
+  const selectedFilter = ref('All')
+
+  function setFilter(value) {
+    selectedFilter.value = value
+  }
+
+  const filteredTasks = computed(() => {
+    if (selectedFilter.value === 'Active') return activeTasks.value
+    if (selectedFilter.value === 'Completed') return completedTasks.value
+    return tasks.value
+  })
+
+  const isClearCompletedShown = computed(() => completedTasks.value.length)
+
+  function clearCompleted() {
+    Promise.all(completedTasks.value.map((task) => remove(tasks.value.indexOf(task))))
+  }
+
+  return {
+    tasksLeft,
+    selectedFilter,
+    setFilter,
+    filteredTasks,
+    isClearCompletedShown,
+    clearCompleted,
+  }
+})

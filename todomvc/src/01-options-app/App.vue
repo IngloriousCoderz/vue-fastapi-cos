@@ -13,6 +13,14 @@ export default {
     }
   },
 
+  mounted() {
+    console.log('Mounted!')
+  },
+
+  updated() {
+    console.log('Updated!')
+  },
+
   methods: {
     // handleInput(event) {
     //   this.text = event.target.value

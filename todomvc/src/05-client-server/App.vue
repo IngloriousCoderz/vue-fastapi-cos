@@ -2,7 +2,6 @@
 import AppHeader from './AppHeader.vue'
 import AppForm from './AppForm.vue'
 import AppList from './AppList.vue'
-import AppFilters from './AppFilters.vue'
 
 import { onMounted, onUpdated } from 'vue'
 
@@ -19,5 +18,4 @@ onUpdated(() => {
   <AppHeader name="Matteo Antony" />
   <AppForm />
   <AppList />
-  <AppFilters />
 </template>
