@@ -1,0 +1,18 @@
+# Create venv
+py -m venv .venv
+
+# Activate venv
+# Linux:
+source .venv/scripts/activate
+# Windows:
+.\.venv\Scripts\Activate.ps1
+
+# Add a package
+pip install fastapi[standard]
+pip freeze > requirements.txt
+
+# Install all dependencies
+pip install -r requirements.txt
+
+# Start server
+fastapi dev main.py

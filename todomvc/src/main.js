@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
-import App from './app/App.vue'
+import App from './06-computed/App.vue'
 import router from './app/router'
 
 const app = createApp(App)
