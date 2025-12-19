@@ -14,5 +14,8 @@ pip freeze > requirements.txt
 # Install all dependencies
 pip install -r requirements.txt
 
-# Start server
+# Start server (dev)
 fastapi dev main.py
+
+# Start server (prod)
+fastapi run main.py

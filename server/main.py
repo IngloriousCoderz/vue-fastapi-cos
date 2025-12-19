@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path
 from pydantic import BaseModel
 from typing import Annotated
 
@@ -17,7 +17,7 @@ def read_root():
 
 
 @app.get("/items/{item_id}")
-def read_item(item_id: Annotated[int, "The item id."], q: str | None = None):
+def read_item(item_id: Annotated[int, Path(title="The item id.")], q: str | None = None):
   return {"item_id": item_id, "q": q}
 
 

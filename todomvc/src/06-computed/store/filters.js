@@ -27,8 +27,10 @@ export const useFiltersStore = defineStore('filters', () => {
 
   const isClearCompletedShown = computed(() => completedTasks.value.length)
 
-  function clearCompleted() {
-    Promise.all(completedTasks.value.map((task) => remove(tasks.value.indexOf(task))))
+  async function clearCompleted() {
+    for (const task of completedTasks.value) {
+      await remove(tasks.value.indexOf(task))
+    }
   }
 
   return {

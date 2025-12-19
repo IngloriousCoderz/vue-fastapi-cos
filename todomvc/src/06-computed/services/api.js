@@ -3,12 +3,12 @@ import axios from 'axios'
 const http = axios.create({ baseURL: import.meta.env.VITE_BASE_URL })
 
 export async function fetchTasks() {
-  const { data } = await http.get('/')
+  const { data } = await http.get('')
   return data
 }
 
 export async function addTask(text) {
-  const { data } = await http.post('/', { text })
+  const { data } = await http.post('', { text })
   return data
 }
 
